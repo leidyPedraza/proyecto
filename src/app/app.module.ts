@@ -7,7 +7,7 @@ import { AngularFireAuth} from '@angular/fire/auth'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegistroComponent } from './registro/registro.component';
+import { RegistroComponent } from './register/register.component';
 import { BienvenidoComponent } from './bienvenido/bienvenido.component';
 import { environment } from 'src/environments/environment.prod';
 
