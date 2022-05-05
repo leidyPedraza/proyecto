@@ -7,14 +7,16 @@ import { AngularFireAuth} from '@angular/fire/auth'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegistroComponent } from './register/register.component';
 import { BienvenidoComponent } from './bienvenido/bienvenido.component';
 import { environment } from 'src/environments/environment.prod';
+import { AuthService } from './services/auth.service';
+import { RegisterComponent } from './register/register.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegistroComponent,
+    RegisterComponent,
     BienvenidoComponent
   ],
   imports: [
@@ -23,9 +25,10 @@ import { environment } from 'src/environments/environment.prod';
     AngularFireModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAuth
+    AngularFireAuth,
+    FormsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
