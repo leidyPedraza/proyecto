@@ -6,13 +6,13 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class AuthService {
 
-  constructor(private afAuth:AngularFireAuth) { }
+  constructor(private afAuth: AngularFireAuth) { }
 
-  async registry(email:string,password:string){
+  async registry(email: string, password: string) {
     try {
-      return await this.afAuth.createUserWithEmailAndPassword(email,password)
+      return await this.afAuth.createUserWithEmailAndPassword(email, password);
     } catch (error) {
-      console.log('error en registro'+ error);
+      console.log('error en registro' + error);
       return null;
     }
   }

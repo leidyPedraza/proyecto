@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule} from '@angular/fire/firestore'
-import { AngularFireAuth} from '@angular/fire/auth'
+
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment.prod';
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    AngularFireAuth,
+    AngularFireAuthModule,
     FormsModule
   ],
   providers: [AuthService],
