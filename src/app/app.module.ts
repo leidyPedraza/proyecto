@@ -7,7 +7,6 @@ import { AngularFireAuth} from '@angular/fire/auth'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BienvenidoComponent } from './bienvenido/bienvenido.component';
 import { environment } from 'src/environments/environment.prod';
 import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './register/register.component';
@@ -17,7 +16,6 @@ import { FormsModule } from '@angular/forms';
   declarations: [
     AppComponent,
     RegisterComponent,
-    BienvenidoComponent
   ],
   imports: [
     BrowserModule,
