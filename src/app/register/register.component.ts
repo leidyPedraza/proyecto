@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: 'app-registro',
+  selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent{
   user = {
     email:'',
     password: ''
@@ -17,13 +17,11 @@ export class RegisterComponent implements OnInit {
               private authService: AuthService
               ) { }
 
-  ngOnInit(): void {
-  }
-  register(){
+  Register() {
     console.log(this.user);
-    const {email,password}= this.user;
-    this.authService.registry(email,password).then(res=>{
-      console.log('registro exitoso'+res);
+    const { email, password } = this.user;
+    this.authService.registry(email, password).then(res => {
+      console.log('registro exitoso',res);
     })
   }
 }

@@ -1,14 +1,15 @@
-<div>
-    <h1>Registrese</h1>
-    <form (submit)="register()"> 
-        <div>
+<div class="container">
+    <h1>Registro</h1>
+    <form> 
+        <div class="content">
             <label for="email">Email</label>
-            <input type="email" placeholder="Email">
+            <input type="email" placeholder="Email" name="email" [(ngModel)]="user.email" >
         </div>
-        <div>
+
+        <div class="content content-1">
             <label for="password">Contraseña</label>
-            <input type="password" placeholder="Contraseña">
+            <input type="password" placeholder="Contraseña" name="password" [(ngModel)]="user.password">
         </div>
-        <button type="submit">Registrarse</button>
+        <button (click)="Register()">Registrarse</button>
     </form>
 </div>
