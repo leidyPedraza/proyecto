@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { LoginComponent } from './components/login/login.component';
+import { BeginComponent } from './components/begin/begin.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LoginComponent } from './components/login/login.component';
     RegisterComponent,
     WelcomeComponent,
     LoginComponent,
+    BeginComponent,
   ],
   imports: [
     BrowserModule,
