@@ -9,16 +9,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from 'src/environments/environment.prod';
 import { AuthService } from './services/auth.service';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './components/register/register.component';
 import { FormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { WelcomeComponent } from './welcome/welcome.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     WelcomeComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -12,6 +11,14 @@ export class AuthService {
   async registry(email: string, password: string) {
     try {
       return await this.afAuth.createUserWithEmailAndPassword(email, password);
+    } catch (error) {
+      console.log('error en registro', error);
+      return null;
+    }
+  }
+  async login(email: string, password: string) {
+    try {
+      return await this.afAuth.signInWithEmailAndPassword(email, password);
     } catch (error) {
       console.log('error en registro', error);
       return null;

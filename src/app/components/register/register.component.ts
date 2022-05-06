@@ -1,6 +1,6 @@
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -26,5 +26,14 @@ export class RegisterComponent{
       this.router.navigate(['/bienvenido']);
       console.log('registro exitoso',res);
     })
+  }
+  logger(){
+    console.log(this.user);
+    const {email, password}= this.user;
+    this.authService.login(email,password).then(res =>{
+      this.router.navigate(['/bienvenido']);
+      console.log('Usuario loggeado', res);
+    }
+    )
   }
 }

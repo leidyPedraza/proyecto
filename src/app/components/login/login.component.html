@@ -1,0 +1,15 @@
+<div class="container">
+    <h1>Iniciar Sesion</h1>
+    <form> 
+        <div class="content">
+            <label for="email">Email</label>
+            <input type="email" placeholder="Email" name="email" [(ngModel)]="user.email" >
+        </div>
+
+        <div class="content content-1">
+            <label for="password">Contraseña</label>
+            <input type="password" placeholder="Contraseña" name="password" [(ngModel)]="user.password">
+        </div>
+        <button (click)="logger()">login</button>
+    </form>
+</div>
