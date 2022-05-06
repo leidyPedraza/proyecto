@@ -12,11 +12,13 @@ import { AuthService } from './services/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
