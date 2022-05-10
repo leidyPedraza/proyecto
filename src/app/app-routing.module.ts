@@ -4,11 +4,12 @@ import { BeginComponent } from './components/begin/begin.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
+import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   {path: '', component: BeginComponent },
   {path: 'registro', component: RegisterComponent},
-  {path: 'bienvenido', component: WelcomeComponent},
+  {path: 'bienvenido', canActivate: [AuthGuard], component: WelcomeComponent },
   {path: 'login', component: LoginComponent}
 ];
 

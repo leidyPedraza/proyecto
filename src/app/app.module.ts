@@ -15,6 +15,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { LoginComponent } from './components/login/login.component';
 import { BeginComponent } from './components/begin/begin.component';
+import { AuthGuard } from './guard/auth.guard';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,7 @@ import { BeginComponent } from './components/begin/begin.component';
     FormsModule,
 
   ],
-  providers: [AuthService],
+  providers: [AuthService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
