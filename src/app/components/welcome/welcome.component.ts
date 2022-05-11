@@ -8,12 +8,21 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./welcome.component.css']
 })
 export class WelcomeComponent {
+  /* roles: 'usuario'| 'admin' = "'usuario'"; */
   constructor(
               private authService: AuthService,
               private router: Router
-  ){}
+  ){
+    this.authService.stateUser().subscribe(res =>{
+      if(res){
+        console.log('está loggeado');
+      } else{
+        console.log('no está loggeado');
+      }
+    });
+  }
   logOut(){
     this.authService.out();
-    return this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 }

@@ -9,28 +9,24 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  user = {
+  user= {
     email: '',
-    password: ''
+    password: '',
   }
   constructor(
     private authService: AuthService,
     private router: Router) { }
-  logger() {
+
+  async logger() {
     console.log(this.user);
-    const { email, password } = this.user;
-    this.authService.login(email, password).then(res => {
+    const res = await this.authService.login(this.user.email, this.user.password)
+    .catch(error =>{
+      console.log('error', error);
+    })
+    if(res){
+      console.log('respuesta',res);
       this.router.navigate(['/bienvenido']);
-      console.log('Usuario loggeado', res);
     }
-    )
   }
-  // isLogin() {
-  //   return this.authService.getUserLogged().subscribe(res => {
-  //     console.log('res',res?.email);
-  //     return res?.email;
-      
-  //   })
-  // }
 }
 

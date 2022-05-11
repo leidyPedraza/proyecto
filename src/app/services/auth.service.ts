@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { UserI } from '../model/model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private isLogged: boolean = false;
-  constructor(private angularFireAuth: AngularFireAuth,
+  constructor(
+    private angularFireAuth: AngularFireAuth,
+
 
   ) {
     angularFireAuth.authState.subscribe((auth) => {
@@ -16,21 +19,12 @@ export class AuthService {
     });
   }
 
-  async registry(email: string, password: string) {
-    try {
-      return await this.angularFireAuth.createUserWithEmailAndPassword(email, password);
-    } catch (error) {
-      console.log('error en registro', error);
-      return null;
-    }
+  registry(data: UserI) {
+    return this.angularFireAuth.createUserWithEmailAndPassword(data.email,data.password);
   }
-  async login(email: string, password: string) {
-    try {
-      return await this.angularFireAuth.signInWithEmailAndPassword(email, password);
-    } catch (error) {
-      console.log('error en registro', error);
-      return null;
-    }
+
+  login(email: string, password: string) {
+    return this.angularFireAuth.signInWithEmailAndPassword(email, password);
   }
   getUserLogged() {
     return this.isLogged;
@@ -38,6 +32,8 @@ export class AuthService {
 
   out() {
     this.angularFireAuth.signOut();
-    console.log('cerró sesion');
+  }
+  stateUser(){
+   return this.angularFireAuth.authState;
   }
 }
