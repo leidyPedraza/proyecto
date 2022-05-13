@@ -36,6 +36,7 @@ export class RegisterComponent{
       this.data.uid = id;
       this.data.password = '';
       await this.firestoreService.createDoc(this.data, path, id);
+      console.log('info', this.data)
       this.router.navigate(['/bienvenido']);
     }
   }

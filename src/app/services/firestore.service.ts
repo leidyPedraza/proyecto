@@ -5,7 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
   providedIn: 'root'
 })
 export class FirestoreService {
-
+  
   constructor(
               private angularFirestore: AngularFirestore,
   ) { }
@@ -17,6 +17,7 @@ export class FirestoreService {
   getIdUser(){
     return this.angularFirestore.createId();
   }
+
   getCollection<tipo>(path:string){
     const collection = this.angularFirestore.collection<tipo>(path);
     return collection.valueChanges();
@@ -24,4 +25,9 @@ export class FirestoreService {
   getDoc<tipo>(path:string, id:string){
     return this.angularFirestore.collection(path).doc<tipo>(id).valueChanges();
   }
+  updateDoc(path:string, id:string, data:any ){
+   return this.angularFirestore.collection(path).doc(id).update(data);
+
+  }
+
 }
