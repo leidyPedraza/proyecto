@@ -1,0 +1,22 @@
+<div class="container">
+    <h1>PERFIL DE USUARIO</h1>
+    <table *ngIf="userInfo">
+
+        <tr>Nombre
+            <td> {{userInfo.name}} </td>
+        </tr>
+        <tr> Edad
+            <td> {{userInfo.age}}</td>
+        </tr>
+        <tr> Email
+            <td> {{userInfo.email}} </td>
+        </tr>
+        <tr> Rol
+            <td> {{userInfo.roles}} </td>
+        </tr>
+    </table>
+    <button>
+        <a routerLink="/editar"> Editar</a>
+    </button>
+
+</div>

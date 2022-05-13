@@ -26,10 +26,10 @@ label {
     color: blueviolet;
 }
 
-input {
+input{
     height: 120%;
 }
-input:focus{
+input:hover{
     background-color: rgb(0, 255, 179);
 }
 
@@ -47,4 +47,10 @@ button {
 }
 button:hover{
     background-color: rgb(153, 255, 0);
+}
+select{
+    height: 150%;
+}
+select:hover{
+    background-color: aqua;
 }
