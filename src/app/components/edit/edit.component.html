@@ -15,6 +15,10 @@
             <label for="email">Email</label>
             <input type="email" placeholder="Email" name="email" [(ngModel)]="data.email">
         </div>
+        <div class="content content-1" *ngIf="roles === 'admin'">
+            <label for="roles">Rol</label>
+            <input type="text" placeholder="Rol" name="roles" [(ngModel)]="data.roles">
+        </div>
 
 
         <button (click)="save()">Guardar</button>

@@ -12,7 +12,8 @@ export class ProfileComponent implements OnInit {
 
   uid: string = null as any;
   userInfo: UserI = null as any;
-  constructor(
+  roles: 'usuario' | 'admin' = null as any;
+    constructor(
               private authService: AuthService,
               private firestoreService: FirestoreService
   ) { }
