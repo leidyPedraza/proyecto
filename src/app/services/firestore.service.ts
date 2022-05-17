@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { UserI } from '../model/model';
 
 @Injectable({
   providedIn: 'root'
@@ -25,9 +26,12 @@ export class FirestoreService {
   getDoc<tipo>(path:string, id:string){
     return this.angularFirestore.collection(path).doc<tipo>(id).valueChanges();
   }
+
   updateDoc(path:string, id:string, data:any ){
    return this.angularFirestore.collection(path).doc(id).update(data);
 
   }
-
+  deleteDoc(path:string, id:string ){
+    return this.angularFirestore.collection(path).doc(id).delete();
+}
 }

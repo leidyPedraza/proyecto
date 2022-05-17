@@ -11,36 +11,40 @@ import { UserI } from 'src/app/model/model';
 export class AdminComponent implements OnInit {
   userInfo: UserI = null as any;
   uid: string = null as any;
-  
- 
+
   data: UserI = {
-    name:null as any,
-    age:null as any,
-    email:null as any,
+    name: null as any,
+    age: null as any,
+    email: null as any,
     uid: null as any,
-    password:null as any,
+    password: null as any,
     roles: null as any
   }
-  roles: 'usuario'|'admin' | undefined = null as any;
-  
+  roles: 'usuario' | 'admin' | undefined = null as any;
+  datas: UserI[] = [];
+
 
   constructor(
-              private authService : AuthService,
-              private firestoreService : FirestoreService
+    private authService : AuthService,
+    private firestoreService: FirestoreService
   ) { }
 
   ngOnInit() {
     this.getCollectionUsers();
   }
-  datas: UserI[]= [];
 
-
-  getCollectionUsers(){
+  getCollectionUsers() {
     const path = 'datas';
-    this.firestoreService.getCollection<UserI>(path).subscribe(res =>{
+    this.firestoreService.getCollection<UserI>(path).subscribe(res => {
       console.log('coleccion:', res);
       this.datas = res;
     })
   }
-}
+  
+ }
+
+
+  
+
+
 

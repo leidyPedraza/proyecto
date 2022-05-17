@@ -8,6 +8,12 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AuthGuard } from './guard/auth.guard';
+import { map } from 'rxjs/operators'
+import { canActivate} from '@angular/fire/auth-guard'
+
+
+const rolAdmin = 'SGtWIZxE4KOMqXpRJgCHSItLbyK2';
+const onlyAdmin= () => map((user:any) => !!user && user.uid === rolAdmin )
 
 const routes: Routes = [
   {path: '', component: BeginComponent },
@@ -15,8 +21,8 @@ const routes: Routes = [
   {path: 'bienvenido', canActivate: [AuthGuard], component: WelcomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'perfil', component: ProfileComponent},
-  {path: 'editar', component:EditComponent},
-  {path: 'admin', canActivate:[AuthGuard], component: AdminComponent}
+  {path: 'editar/:id', component:EditComponent},
+  {path: 'admin', component: AdminComponent, ...canActivate(onlyAdmin), canActivate:[AuthGuard]}
 ];
 
 @NgModule({
