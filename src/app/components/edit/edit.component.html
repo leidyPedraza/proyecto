@@ -1,0 +1,27 @@
+<div class="container">
+    <h1>Editar Perfil</h1>
+    <form> 
+        <div class="content">
+            <label for="name">Nombre</label>
+            <input type="text" placeholder="Nombre" name="name" [(ngModel)]="data.name">
+        </div>
+
+        <div class="content content-1">
+            <label for="age">Edad</label>
+            <input type="number" placeholder="Edad" name="age" [(ngModel)]="data.age">
+        </div>
+
+        <div class="content content-1">
+            <label for="email">Email</label>
+            <input type="email" placeholder="Email" name="email" [(ngModel)]="data.email">
+        </div>
+        <div class="content content-1" *ngIf="roles === 'admin'">
+            <label for="roles">Rol</label>
+            <input type="text" placeholder="Rol" name="roles" [(ngModel)]="data.roles">
+        </div>
+
+        <button (click)="save()">Guardar</button>
+        <button (click)="delete()">Eliminar</button>
+
+    </form>
+</div>

@@ -1,5 +1,13 @@
 <div class="container">
     <h1>Bienvenido</h1>
+    <button>
+        <a routerLink="/perfil">Perfil</a>
+    </button>
+    <button *ngIf="roles === 'admin'">
+        <a routerLink="/admin" >Administrar perfiles</a>
+    </button>
+    <hr>
     <button (click)="logOut()">Cerrar sesion</button>
+
    
 </div>

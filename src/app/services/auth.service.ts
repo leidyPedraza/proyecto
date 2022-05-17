@@ -36,4 +36,12 @@ export class AuthService {
   stateUser(){
    return this.angularFireAuth.authState;
   }
+  async getUid(){
+    const user = await this.angularFireAuth.currentUser;
+    if (user){
+      return user!.uid;
+  }else{
+    return null;
+    }
+  }
 }
