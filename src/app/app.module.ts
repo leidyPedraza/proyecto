@@ -18,6 +18,7 @@ import { BeginComponent } from './components/begin/begin.component';
 import { AuthGuard } from './guard/auth.guard';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditComponent } from './components/edit/edit.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { EditComponent } from './components/edit/edit.component';
     LoginComponent,
     BeginComponent,
     ProfileComponent,
-    EditComponent
+    EditComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

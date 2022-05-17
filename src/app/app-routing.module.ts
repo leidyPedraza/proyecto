@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminComponent } from './components/admin/admin.component';
 import { BeginComponent } from './components/begin/begin.component';
 import { EditComponent } from './components/edit/edit.component';
 import { LoginComponent } from './components/login/login.component';
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'bienvenido', canActivate: [AuthGuard], component: WelcomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'perfil', component: ProfileComponent},
-  {path: 'editar', component:EditComponent}
+  {path: 'editar', component:EditComponent},
+  {path: 'admin', canActivate:[AuthGuard], component: AdminComponent}
 ];
 
 @NgModule({
