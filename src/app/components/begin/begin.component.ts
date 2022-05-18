@@ -1,5 +1,4 @@
-import { Component} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-begin',
@@ -7,7 +6,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./begin.component.css']
 })
 export class BeginComponent {
-constructor(
-            private router: Router
-){}
+  constructor(
+  ) { }
 }

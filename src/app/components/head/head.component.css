@@ -1,0 +1,25 @@
+.container {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 85;
+    border: 3px solid rgb(128, 0, 128);
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 5% auto;
+    background-color: white;
+}
+
+a {
+    margin-left: 5%;
+    margin-right: 5%;
+    text-decoration: none;
+    color: purple;
+}
+
+a:hover {
+    background-color: aquamarine;
+    font-size: 150%;
+    border: 1px solid purple;
+    border-radius: 10% 10%;
+    color: black;
+}

@@ -11,14 +11,19 @@ export class AuthGuard implements CanActivate {
     private router: Router,
     private authService: AuthService
   ) { }
+
+  /**
+   * Guardian para proteger el acceso a rutas de usuarios NO loggeados
+   * @param next 
+   * @param state 
+   * @returns boolean
+   */
   canActivate(
     next: ActivatedRouteSnapshot,
-
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (!this.authService.getUserLogged()) {
       console.log('no entro');
       return this.router.navigate(['/login']).then(() => false);
-
     }
     console.log('getUserLogged', this.authService.getUserLogged());
     return true;
