@@ -1,0 +1,8 @@
+<nav class="container">
+    <a routerLink="/login" *ngIf="router.url !== '/login'">Login</a>
+    <a routerLink="/registro" *ngIf="router.url !== '/registro'">Registro</a>
+    <a routerLink="/bienvenido" *ngIf="router.url !== '/bienvenido'">Bienvenido</a>
+    <a routerLink="/perfil" *ngIf="router.url !== '/perfil'">Perfil</a>
+    <a routerLink="/editar/:id" *ngIf="router.url !== '/editar'">Editar</a>
+    <a routerLink="/" (click)="logOut()">Cerrar Sesion</a>
+</nav>

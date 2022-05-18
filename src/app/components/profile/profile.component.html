@@ -1,7 +1,6 @@
 <div class="container">
     <h1>PERFIL DE USUARIO</h1>
     <table *ngIf="userInfo">
-
         <tr>Nombre
             <td> {{userInfo.name}} </td>
         </tr>
@@ -16,7 +15,6 @@
         </tr>
     </table>
     <button>
-        <a routerLink="/editar"> Editar</a>
+        <a routerLink="/editar/{{uid}}"> Editar</a>
     </button>
-
 </div>

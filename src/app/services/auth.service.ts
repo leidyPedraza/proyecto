@@ -19,29 +19,58 @@ export class AuthService {
     });
   }
 
+  /**
+   * Método para crear un usuario con email y password
+   * @param data 
+   * @returns Usuario
+   */
   registry(data: UserI) {
-    return this.angularFireAuth.createUserWithEmailAndPassword(data.email,data.password);
+    return this.angularFireAuth.createUserWithEmailAndPassword(data.email, data.password);
   }
 
+  /**
+   * Método para autenticar el inicio de sesión
+   * @param email  
+   * @param password 
+   * @returns 
+   */
   login(email: string, password: string) {
     return this.angularFireAuth.signInWithEmailAndPassword(email, password);
   }
+
+  /**
+   * Método para saber si el usuario está loggeado
+   * @returns boolean
+   */
   getUserLogged() {
     return this.isLogged;
   }
 
+  /**
+   * Método para cerrar sesion
+   */
   out() {
     this.angularFireAuth.signOut();
   }
-  stateUser(){
-   return this.angularFireAuth.authState;
+
+  /**
+   * Metodo para obtener el estado de autenticación
+   * @returns 
+   */
+  stateUser() {
+    return this.angularFireAuth.authState;
   }
-  async getUid(){
+
+  /**
+   * Método para obetener el ID de un usuario
+   * @returns 
+   */
+  async getUid() {
     const user = await this.angularFireAuth.currentUser;
-    if (user){
-      return user!.uid;
-  }else{
-    return null;
+    if (user) {
+      return user.uid;
+    } else {
+      return null;
     }
   }
 }

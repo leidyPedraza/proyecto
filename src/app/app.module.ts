@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule} from '@angular/fire/firestore'
+import { AngularFirestoreModule } from '@angular/fire/firestore'
 
 
 
@@ -19,6 +19,7 @@ import { AuthGuard } from './guard/auth.guard';
 import { ProfileComponent } from './components/profile/profile.component';
 import { EditComponent } from './components/edit/edit.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { HeadComponent } from './components/head/head.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { AdminComponent } from './components/admin/admin.component';
     BeginComponent,
     ProfileComponent,
     EditComponent,
-    AdminComponent
+    AdminComponent,
+    HeadComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,7 @@ import { AdminComponent } from './components/admin/admin.component';
     FormsModule,
 
   ],
-  providers: [AuthService,AuthGuard],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

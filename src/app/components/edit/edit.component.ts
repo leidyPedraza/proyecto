@@ -12,11 +12,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class EditComponent implements OnInit {
 
-
-  userInfo: UserI = null as any;
-  uid: string = null as any;
-
-
   data: UserI = {
     name: null as any,
     age: null as any,
@@ -26,8 +21,8 @@ export class EditComponent implements OnInit {
     roles: null as any
   }
   roles: 'usuario' | 'admin' | undefined = null as any;
-
-
+  uid: string = '';
+  userUidLogged: string = '';
 
   constructor(
     private firestoreService: FirestoreService,
@@ -36,14 +31,15 @@ export class EditComponent implements OnInit {
     private router: Router
   ) { }
   ngOnInit() {
-
-    this.getId();
+    this.getUserUidLogged();
     this.getInfoUser();
   }
 
-
+  /**
+   * Método para guardar los cambios en el perfil del usuario
+   */
   async save() {
-    const uid = await this.authService.getUid();
+    const uid = await this.activatedRoute.snapshot.paramMap.get('uid');
     if (uid) {
       this.uid = uid;
       console.log('uid:', this.uid);
@@ -55,6 +51,9 @@ export class EditComponent implements OnInit {
     }
   }
 
+  /**
+   * Método para actualizar la informacion del perfil del usuario
+   */
   updateInfo() {
     const path = 'datas';
     const id = this.uid;
@@ -67,42 +66,58 @@ export class EditComponent implements OnInit {
     }
     this.firestoreService.updateDoc(path, id, data);
   }
-  async getUid() {
+
+  /**
+   * Método para obtener el ID del usuario que está loggeado
+   */
+  private async getUserUidLogged() {
     const uid = await this.authService.getUid();
     if (uid) {
-      this.uid = uid;
-      console.log('uid:', this.uid);
+      this.userUidLogged = uid;
+      this.getInfoUserLogged();
+      console.log('userUidLogged:', this.userUidLogged);
       this.getInfoUser();
     } else {
-      console.log('no existe uid');
+      console.log('no existe userUidLogged');
     }
   }
 
-  getInfoUser() {
+  /**
+   * Método para obtener el rol del usuario loggeado
+   */
+  private getInfoUserLogged() {
     console.log('start info user');
     const path = 'datas';
-    const id = this.uid;
+    const id = this.userUidLogged;
     this.firestoreService.getDoc<UserI>(path, id).subscribe(res => {
       if (res) {
-        this.userInfo = res;
-        console.log('res', res)
+        this.roles = res?.roles;
+        console.log('roles', this.roles);
       }
-      this.roles = res?.roles;
-      console.log('roles', this.roles);
-      console.log('info actualizado1:', res);
-      this.data.name = res?.name ? res.name : '';
-      this.data.age = res?.age ? res.age : 0;
-      this.data.email = res?.email ? res.email : '';
-      this.data.roles = res?.roles ? res.roles : 'usuario';
     })
   }
 
-  getId() {
-    const id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.uid = id ? id : '';
-    console.log('uid', id);
+  /**
+   * Método para obtener el información del usuario a editar
+   */
+  async getInfoUser() {
+    console.log('start info user');
+    const uid = await this.activatedRoute.snapshot.paramMap.get('uid');
+    if (uid) {
+      this.uid = uid;
+      const path = 'datas';
+      this.firestoreService.getDoc<UserI>(path, uid).subscribe(res => {
+        if (res) {
+          console.log('res', res);
+          this.data = res;
+        }
+      });
+    }
   }
 
+  /**
+   * Método para eliminar el perfil de un usuario
+   */
   delete() {
     const path = 'datas';
     const id = this.uid;

@@ -9,20 +9,22 @@ import { RegisterComponent } from './components/register/register.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { AuthGuard } from './guard/auth.guard';
 import { map } from 'rxjs/operators'
-import { canActivate} from '@angular/fire/auth-guard'
+import { canActivate } from '@angular/fire/auth-guard'
 
-
-const rolAdmin = 'SGtWIZxE4KOMqXpRJgCHSItLbyK2';
-const onlyAdmin= () => map((user:any) => !!user && user.uid === rolAdmin )
+/**
+ * Constantes que identifican el ID del adiministrador
+ */
+const rolAdmin = 'clIOu92AYkcVvEZj8iEEcaZTwMx2';
+const onlyAdmin = () => map((user: any) => !!user && user.uid === rolAdmin)
 
 const routes: Routes = [
-  {path: '', component: BeginComponent },
-  {path: 'registro', component: RegisterComponent},
-  {path: 'bienvenido', canActivate: [AuthGuard], component: WelcomeComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'perfil', component: ProfileComponent},
-  {path: 'editar/:id', component:EditComponent},
-  {path: 'admin', component: AdminComponent, ...canActivate(onlyAdmin), canActivate:[AuthGuard]}
+  { path: '', component: BeginComponent },
+  { path: 'registro', component: RegisterComponent },
+  { path: 'bienvenido', canActivate: [AuthGuard], component: WelcomeComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'perfil', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'editar/:uid', component: EditComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminComponent, ...canActivate(onlyAdmin), canActivate: [AuthGuard] }
 ];
 
 @NgModule({

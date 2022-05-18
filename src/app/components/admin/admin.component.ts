@@ -9,23 +9,11 @@ import { UserI } from 'src/app/model/model';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-  userInfo: UserI = null as any;
-  uid: string = null as any;
 
-  data: UserI = {
-    name: null as any,
-    age: null as any,
-    email: null as any,
-    uid: null as any,
-    password: null as any,
-    roles: null as any
-  }
-  roles: 'usuario' | 'admin' | undefined = null as any;
   datas: UserI[] = [];
 
-
   constructor(
-    private authService : AuthService,
+    private authService: AuthService,
     private firestoreService: FirestoreService
   ) { }
 
@@ -33,6 +21,9 @@ export class AdminComponent implements OnInit {
     this.getCollectionUsers();
   }
 
+  /**
+   * Método para obtener la coleccion de usuarios y despleagrala en la tabla HTML
+   */
   getCollectionUsers() {
     const path = 'datas';
     this.firestoreService.getCollection<UserI>(path).subscribe(res => {
@@ -40,11 +31,10 @@ export class AdminComponent implements OnInit {
       this.datas = res;
     })
   }
-  
- }
+}
 
 
-  
+
 
 
 
