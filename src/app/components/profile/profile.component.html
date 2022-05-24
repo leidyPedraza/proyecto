@@ -1,20 +1,20 @@
 <div class="container">
     <h1>PERFIL DE USUARIO</h1>
-    <table *ngIf="userInfo">
+    <table *ngIf="data">
         <tr>Nombre
-            <td> {{userInfo.name}} </td>
+            <td> {{data.name}} </td>
         </tr>
         <tr> Edad
-            <td> {{userInfo.age}}</td>
+            <td> {{data.age}}</td>
         </tr>
         <tr> Email
-            <td> {{userInfo.email}} </td>
+            <td> {{data.email}} </td>
         </tr>
         <tr> Rol
-            <td> {{userInfo.roles}} </td>
+            <td> {{data.roles}} </td>
         </tr>
     </table>
     <button>
-        <a routerLink="/editar/{{uid}}"> Editar</a>
+        <a routerLink="/editar/{{data.uid}}"> Editar</a>
     </button>
 </div>

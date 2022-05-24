@@ -15,12 +15,12 @@
             <label for="email">Email</label>
             <input type="email" placeholder="" name="email" [(ngModel)]="data.email">
         </div>
-        <div class="content content-1" *ngIf="roles === 'admin'">
+        <div class="content content-1" *ngIf="rol === 'admin'">
             <label for="roles">Rol</label>
             <input type="text" placeholder="Rol" name="roles" [(ngModel)]="data.roles">
         </div>
 
         <button (click)="save()">Guardar</button>
-        <button (click)="delete()" *ngIf="roles === 'admin'">Eliminar</button>
+        <button (click)="delete()" *ngIf="rol === 'admin'">Eliminar</button>
     </form>
 </div>

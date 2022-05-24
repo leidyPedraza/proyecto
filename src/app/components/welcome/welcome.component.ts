@@ -1,18 +1,16 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { UserI } from 'src/app/model/model';
-import { AuthService } from 'src/app/services/auth.service';
-import { FirestoreService } from 'src/app/services/firestore.service';
 
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.css']
 })
-export class WelcomeComponent {
-  uid: string = null as any;
+export class WelcomeComponent implements OnInit {
+
+  uid: string = JSON.stringify(localStorage.getItem('uid'));
   userInfo: UserI = null as any;
-  roles: 'usuario' | 'admin' | undefined = null as any;
+
   data: UserI = {
     name: null as any,
     age: null as any,
@@ -21,50 +19,27 @@ export class WelcomeComponent {
     password: null as any,
     roles: null as any
   }
-
+  role = localStorage.getItem('role');
 
   constructor(
-    private authService: AuthService,
-    private firestoreService: FirestoreService,
-  ) {
-    this.getUid();
-    this.authService.stateUser().subscribe(res => {
-      if (res) {
-        console.log('está loggeado');
-      } else {
-        console.log('no está loggeado');
-      }
-    });
+  ) {}
+  
+  ngOnInit() {
+    console.log('rol',this.role);
+    setTimeout(() => {
+      this.getUserInfo();
+    }, 2000);
   }
 
   /**
-   * Método para obtener ID del usuario Loggeado
+   * Método para obtener la información del usuario Loggeado
    */
-  async getUid() {
-    const uid = await this.authService.getUid();
-    if (uid) {
-      this.uid = uid;
-      console.log('uid:', this.uid);
-      this.getInfoUser();
-    } else {
-      console.log('no existe uid');
-    }
-  }
-
-  /**
-   * Método para obtener la información del usuario loggeado
-   */
-  getInfoUser() {
-    console.log('start info user');
-    const path = 'datas';
-    const id = this.uid;
-    this.firestoreService.getDoc<UserI>(path, id).subscribe(res => {
-      if (res) {
-        this.data = res;
-        this.roles = res?.roles;
-        console.log('roles', this.roles);
-        console.log('info actualizado1:', res);
-      }
-    })
+  getUserInfo() {
+    this.data = JSON.parse(localStorage.getItem('userInfo') || '[]');
+    const rol = this.data.roles;
+    console.log('this role', rol)
+    this.role = rol;
+    localStorage.setItem('role', rol);
+    console.log('data', this.data);
   }
 }

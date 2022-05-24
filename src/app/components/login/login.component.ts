@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { FirestoreService } from 'src/app/services/firestore.service';
+import { UserI } from 'src/app/model/model';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +18,8 @@ export class LoginComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private firestoreService: FirestoreService) { }
 
   /**
    * Método para iniciar sesión
@@ -28,8 +31,26 @@ export class LoginComponent {
         console.log('error', error);
       })
     if (res) {
+      this.getIdUser();
       console.log('respuesta', res);
       this.router.navigate(['/bienvenido']);
+    }
+  }
+
+  getInfoUser(uid: string) {
+    this.firestoreService.getDoc<UserI>('datas', uid).subscribe(res => {
+      if (res && localStorage.getItem('Logged') == "true") {
+        localStorage.setItem('userInfo', JSON.stringify(res));
+        console.log('uidRes', res);
+      }
+    })
+  }
+
+  async getIdUser() {
+    const id = await this.authService.getUid();
+    if (id) {
+      localStorage.setItem('uid', id);
+      this.getInfoUser(id);
     }
   }
 }

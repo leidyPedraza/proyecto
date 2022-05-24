@@ -14,20 +14,22 @@ export class HeadComponent implements OnInit {
     public router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.router.navigate(['/login']);
-    this.router.navigate(['/registro']);
-    this.router.navigate(['/bienvenido']);
-    this.router.navigate(['/perfil']);
-    this.router.navigate(['/editar/:id']);
-  }
+  ngOnInit() {}
 
   /**
    * Método para cerrar sesión
    */
   logOut() {
-    if (confirm('desea cerra sesion?')) {
+    if (localStorage.getItem('Logged') === "false") {
+      confirm('no has iniciado sesión');
+      localStorage.setItem('userInfo', '');
+    } else {
+      (confirm('desea cerra sesion?'));
       this.authService.out();
+      localStorage.setItem('userInfo', '');
+      localStorage.setItem('role', '')
+      localStorage.setItem('Logged', "false");
+      localStorage.setItem('uid', '');
       this.router.navigate(['/']);
     }
   }

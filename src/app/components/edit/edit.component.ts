@@ -20,9 +20,9 @@ export class EditComponent implements OnInit {
     password: null as any,
     roles: null as any
   }
-  roles: 'usuario' | 'admin' | undefined = null as any;
+  rol: 'usuario' | 'admin' | undefined = null as any;
   uid: string = '';
-  userUidLogged: string = '';
+  userUidLogged: string = JSON.stringify(localStorage.getItem('uid'));
 
   constructor(
     private firestoreService: FirestoreService,
@@ -45,8 +45,10 @@ export class EditComponent implements OnInit {
       console.log('uid:', this.uid);
       this.updateInfo();
       console.log(this.data.uid);
-      this.router.navigate(['/perfil']);
+    } if (this.rol === "admin") {
+      this.router.navigate(['/admin']);
     } else {
+      this.router.navigate(['/perfil']);
       console.log('no existe uid');
     }
   }
@@ -70,8 +72,9 @@ export class EditComponent implements OnInit {
   /**
    * Método para obtener el ID del usuario que está loggeado
    */
+
   private async getUserUidLogged() {
-    const uid = await this.authService.getUid();
+    const uid = await localStorage.getItem('uid');
     if (uid) {
       this.userUidLogged = uid;
       this.getInfoUserLogged();
@@ -91,8 +94,8 @@ export class EditComponent implements OnInit {
     const id = this.userUidLogged;
     this.firestoreService.getDoc<UserI>(path, id).subscribe(res => {
       if (res) {
-        this.roles = res?.roles;
-        console.log('roles', this.roles);
+        this.rol = res?.roles;
+        console.log('roles', this.rol);
       }
     })
   }
